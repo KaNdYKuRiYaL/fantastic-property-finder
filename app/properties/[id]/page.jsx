@@ -11,6 +11,7 @@ import PropertyImages from "@/components/PropertyImages";
 import BookMarkButton from "@/components/BookMarkButton";
 import ShareButtons from "@/components/ShareButtons";
 import PropertyContactForm from "@/components/PropertyContactForm";
+import ErrorPage from "@/app/error";
 
 
 const PropertyPage = () => {
@@ -38,7 +39,7 @@ const PropertyPage = () => {
   if (!property && !loading) {
     return (
       <h1 className="text-center text-2xl font-bold mt-10">
-        Property Not Found
+        <ErrorPage/>
       </h1>
     );
   }

@@ -1,6 +1,8 @@
 "use client"
 import React,{useState,useEffect} from 'react'
 
+import addProperty from '@/app/actions/addProperty';
+
 
 
 const PropertyAddForm = () => {
@@ -97,7 +99,7 @@ const PropertyAddForm = () => {
 
 
   return mounted && 
-    <form action='/api/properties' method='POST' encType='multipart/form-data'> 
+    <form action={addProperty} method='POST' encType='multipart/form-data'> 
             <h2 className="text-3xl text-center font-semibold mb-6">
               Add Property
             </h2>
