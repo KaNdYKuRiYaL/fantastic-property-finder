@@ -70,7 +70,7 @@ const PropertyPage = () => {
                 <aside className="space-y-4">
                   <BookMarkButton property= {property}/>
                   
-                  <ShareButtons/>
+                  <ShareButtons property={property}/>
 
                   {/* <!-- Contact Form --> */}
                   
