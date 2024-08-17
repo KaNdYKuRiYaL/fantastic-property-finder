@@ -15,7 +15,7 @@ const ErrorPage = ({error}) => {
           <div className="text-center">
             <h1 className="text-3xl font-bold mt-4 mb-2">Something Went Wrong</h1>
             <p className="text-gray-500 text-xl mb-10">
-              Property not found.
+              Try Again Later
             </p>
             <Link
               href="/"
