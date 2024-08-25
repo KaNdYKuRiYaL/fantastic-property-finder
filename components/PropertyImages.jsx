@@ -1,20 +1,35 @@
-import Image from 'next/image'
-import React from 'react'
+'use client';
+import Image from 'next/image';
+import React from 'react';
+import { Gallery, Item } from 'react-photoswipe-gallery';
 
 const PropertyImages = ({images}) => {
   return (
+    <Gallery>
     <section className='bg-blue-50 p-4'>
         <div className="container mx-auto">
             {images.length === 1?(
-                <Image
-                src = {images[0]} 
-                alt=''
-                className='object-cover h-[400px] mx-auto rounded-xl'
-                width={0}
-                height={0}
-                sizes='100vw'
-                priority = {true}
-                />
+                <Item
+                original={images[0]}
+                thumbnail={images[0]}
+                width="1000"
+                height="600">
+
+                    {({ref,open})=>(
+                        <Image
+                        src = {images[0]}
+                        ref = {ref} 
+                        onClick={open}
+                        alt=''
+                        className='object-cover h-[400px] mx-auto rounded-xl cursor-pointer'
+                        width={0}
+                        height={0}
+                        sizes='100vw'
+                        priority = {true}
+                        />
+                    )}
+                    
+                </Item>
             ):(
                 <div className='grid grid-col-2 gap-4'>
                     {images.map((image,index)=>(
@@ -22,21 +37,32 @@ const PropertyImages = ({images}) => {
                         className= {`
                         ${images.length === 3 && index===2 ? 'col-span-2': 'col-span-1'}
                         `}>
-                            <Image
-                            src = {image} 
-                            alt=''
-                            className='object-cover h-[400px] w-full rounded-xl'
-                            width={0}
-                            height={0}
-                            sizes='100vw'
-                            priority = {true}
-                            />
+                            <Item
+                            original={image}
+                            thumbnail={images}
+                            width="1000"
+                            height="600">
+                                {({ref,open})=>(
+                                    <Image
+                                    src = {image} 
+                                    ref = {ref}
+                                    onClick={open}
+                                    alt=''
+                                    className='object-cover h-[400px] w-full rounded-xl cursor-pointer'
+                                    width={0}
+                                    height={0}
+                                    sizes='100vw'
+                                    priority = {true}
+                                    />
+                                )}
+                            </Item>    
                         </div>
                     ))}
                 </div>
             )}
         </div>
     </section>
+    </Gallery>
   )
 }
 

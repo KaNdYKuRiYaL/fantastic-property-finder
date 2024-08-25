@@ -1,12 +1,21 @@
 import React from 'react'
 import PropertyCard from '@/components/PropertyCard';
-
 import { fetchProperties } from '@/utils/request';
+import Property from '@/models/Property';
+import Pagination from '@/components/Pagination';
 
-const PropertyPage = async () => {
-  const properties = await fetchProperties()
+const PropertyPage = async ({searchParams : {page=1 , pageSize=3}}) => {
+  
+  // const properties = await fetchProperties()
   // sort properties by date
-  properties.sort((a,b)=> new Date(b.createdAt)- new Date(a.createdAt))
+  // properties.sort((a,b)=> new Date(b.createdAt)- new Date(a.createdAt))
+  
+  const skip = (page-1)*pageSize;
+  const total = await Property.countDocuments({});
+  const properties = await Property.find({}).skip(skip).limit(pageSize);
+
+  const showPagination = total > pageSize;
+
   return (
     <section className="px-4 py-6">
       <div className="container-xl lg:container m-auto px-4 py-6">
@@ -19,6 +28,10 @@ const PropertyPage = async () => {
           ))}
         </div>
         )}
+        {showPagination && (<Pagination 
+        page={parseInt(page)} 
+        pageSize ={parseInt(pageSize)} 
+        totalItems = {total} />)}
         
       </div>
     </section>  
