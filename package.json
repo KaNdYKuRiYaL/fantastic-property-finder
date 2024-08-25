@@ -12,6 +12,7 @@
     "@mapbox/mapbox-sdk": "^0.16.0",
     "autoprefixer": "^10.4.19",
     "cloudinary": "^2.2.0",
+    "date-fns": "^3.6.0",
     "mapbox-gl": "^3.5.2",
     "mongodb": "^6.8.0",
     "mongoose": "^8.4.5",
