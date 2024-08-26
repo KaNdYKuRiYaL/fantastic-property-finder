@@ -99,7 +99,7 @@ const PropertyAddForm = () => {
 
 
   return mounted && 
-    <form action={addProperty} method='POST' encType='multipart/form-data'> 
+    <form action={addProperty}> 
             <h2 className="text-3xl text-center font-semibold mb-6">
               Add Property
             </h2>

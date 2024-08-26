@@ -1,15 +1,12 @@
-import React from 'react'
+import React from 'react';
+import connectDB from '@/config/database';
 import PropertyCard from '@/components/PropertyCard';
-import { fetchProperties } from '@/utils/request';
 import Property from '@/models/Property';
 import Pagination from '@/components/Pagination';
 
-const PropertyPage = async ({searchParams : {page=1 , pageSize=3}}) => {
+const PropertyPage = async ({searchParams : {page=1 , pageSize=6}}) => {
   
-  // const properties = await fetchProperties()
-  // sort properties by date
-  // properties.sort((a,b)=> new Date(b.createdAt)- new Date(a.createdAt))
-  
+  await connectDB();
   const skip = (page-1)*pageSize;
   const total = await Property.countDocuments({});
   const properties = await Property.find({}).skip(skip).limit(pageSize);

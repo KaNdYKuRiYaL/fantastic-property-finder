@@ -1,4 +1,4 @@
-import React from 'react'
+
 import {FaBed , FaRulerCombined , FaBath, FaMapMarker , FaTimes, FaCheck } from 'react-icons/fa'
 import PropertyMap from './PropertyMap'
 

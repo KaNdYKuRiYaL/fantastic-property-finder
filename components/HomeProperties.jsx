@@ -1,17 +1,18 @@
 import React from "react";
 import PropertyCard from "@/components/PropertyCard";
 import Link from "next/link";
-
-import { fetchProperties } from "@/utils/request";
-
+import Property from "@/models/Property";
+import connectDB from "@/config/database";
 
 const HomeProperties = async() => {
-  const properties = await fetchProperties();
+  
+  await connectDB();
+  const recentProperties = await Property.find({})
+  .sort({createdAt:-1})
+  .limit(3)
+  .lean();
 
-  const recentProperties = properties
-    .sort(() => Math.random() - Math.random())
-    .slice(0, 3);
-
+  
   return (
     <>
       <section className="px-4 py-6">

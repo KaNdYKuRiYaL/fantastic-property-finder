@@ -6,6 +6,8 @@ import { getSessionUser } from "@/utils/getSessionUser";
 import { revalidatePath } from "next/cache";
 
 async function deleteProperty(propertyId){
+
+    await connectDB();
     const sessionUser = await getSessionUser();
 
     if(!sessionUser || !sessionUser.userId){
@@ -18,13 +20,13 @@ async function deleteProperty(propertyId){
     if(!property) throw new Error('Property not found');
 
     // verify ownership
-    if(property.owner.toString() != userId){
+    if(property.owner.toString() !== userId){
         throw new Error('Unauthorized');
     }
 
     // delete images from cloudinary
     // extract image url from database
-    const publicIds= property.imges.map((imageUrl)=>{
+    const publicIds= property.images.map((imageUrl)=>{
         const parts = imageUrl.split('/');
         return parts.at(-1).split('.').at(0);
     });

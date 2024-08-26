@@ -1,3 +1,4 @@
+'use client';
 import React , {useState , useEffect} from 'react';
 import { FaBookmark } from 'react-icons/fa';
 import bookmarkProperty from '@/app/actions/bookmarkProperty';
